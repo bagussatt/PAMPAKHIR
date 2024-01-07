@@ -1,0 +1,1 @@
+Aplikasi ini berguna untuk memantau pemasukan dan juga pengeluaran selain itu aplikasi ini mempunyai fitur pencatatan utang yang akan memudahkan penjual/perusahaan/pengguna aplikasi ini untuk memantau atau melakukan tracking pada keuangan mereka
