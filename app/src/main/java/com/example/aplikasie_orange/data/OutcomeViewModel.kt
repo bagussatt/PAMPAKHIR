@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
+import com.google.firebase.firestore.toObject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose
@@ -44,7 +45,7 @@ class OutcomeViewModel : ViewModel() {
         context: Context
     )    = CoroutineScope(Dispatchers.IO).launch {
         val fireStoreRef = Firebase.firestore
-            .collection("Income")
+            .collection("Outcome")
             .document(outcomeData.idOutme)
 
         try{
@@ -56,6 +57,30 @@ class OutcomeViewModel : ViewModel() {
             Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
         }
     }
+    fun retrieveData(
+        idOutme: String,
+        context: Context,
+        data: (OutcomeData) -> Unit
+    )    = CoroutineScope(Dispatchers.IO).launch {
+        val fireStoreRef = Firebase.firestore
+            .collection("Outcome")
+            .document(idOutme)
+
+        try{
+            fireStoreRef.get()
+                .addOnSuccessListener {
+                    if (it.exists()){
+                        val outcomeData = it.toObject<OutcomeData>()!!
+                        data(outcomeData)
+                    } else {
+                        Toast.makeText(context, "No User Data Found", Toast.LENGTH_SHORT).show()
+                    }
+                }
+        } catch (e: Exception){
+            Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+        }
+    }
+
 
 
 }
