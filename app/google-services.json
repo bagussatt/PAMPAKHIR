@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "38499373273",
+    "project_id": "aplikasie-orange",
+    "storage_bucket": "aplikasie-orange.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38499373273:android:dadef0fa74dde22061eec8",
+        "android_client_info": {
+          "package_name": "com.example.aplikasie_orange"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-4icBC6U7e0iXzjV9l24H87CEGiieArc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
