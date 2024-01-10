@@ -3,6 +3,7 @@ package com.example.aplikasie_orange.data
 import android.content.Context
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
+import androidx.navigation.NavController
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.toObject
@@ -75,6 +76,25 @@ class OutcomeViewModel : ViewModel() {
                     } else {
                         Toast.makeText(context, "No User Data Found", Toast.LENGTH_SHORT).show()
                     }
+                }
+        } catch (e: Exception){
+            Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+        }
+    }
+    fun delateData(
+        idOutme: String,
+        context: Context,
+        navController: NavController,
+    )    = CoroutineScope(Dispatchers.IO).launch {
+        val fireStoreRef = Firebase.firestore
+            .collection("Outcome")
+            .document(idOutme)
+
+        try{
+            fireStoreRef.delete()
+                .addOnSuccessListener {
+                    Toast.makeText(context, "Succsesfully delate data", Toast.LENGTH_LONG).show()
+                    navController.popBackStack()
                 }
         } catch (e: Exception){
             Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
