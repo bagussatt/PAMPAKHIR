@@ -1,10 +1,15 @@
 package com.example.aplikasie_orange.data
 
+import android.content.Context
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.launch
 
 class HutangViewModel: ViewModel() {
     fun getAllData(): kotlinx.coroutines.flow.Flow<List<HutangData>> = callbackFlow {
@@ -34,4 +39,22 @@ class HutangViewModel: ViewModel() {
             subscription.remove()
         }
     }
+    fun saveData(
+        hutangData: HutangData,
+        context: Context
+    )    = CoroutineScope(Dispatchers.IO).launch {
+        val fireStoreRef = Firebase.firestore
+            .collection("Hutang")
+            .document(hutangData.idHutang)
+
+        try{
+            fireStoreRef.set(hutangData)
+                .addOnSuccessListener {
+                    Toast.makeText(context, "Succsesfully saved data", Toast.LENGTH_LONG).show()
+                }
+        } catch (e: Exception){
+            Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+        }
+    }
+
 }
