@@ -1,14 +1,9 @@
-package com.example.aplikasie_orange.ui.hutang
+package com.example.aplikasie_orange.ui.income
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -30,18 +25,18 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.aplikasie_orange.model.HutangViewModel
+import com.example.aplikasie_orange.model.IncomeViewModel
 import com.example.aplikasie_orange.navigation.lyr
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CariHutangScreen(
+fun CariIncomeScreen(
     navController: NavController,
-    hutangViewModel: HutangViewModel,
+    incomeViewModel: IncomeViewModel,
 ) {
-    var idHutang by remember { mutableStateOf("") }
-    var nama by remember { mutableStateOf("") }
+    var idIncome by remember { mutableStateOf("") }
     var date by remember { mutableStateOf("") }
-    var uangHutang by remember { mutableStateOf(0.0) }
+    var uangmasuk by remember { mutableStateOf(0.0) }
     var note by remember { mutableStateOf("") }
 
     val context = LocalContext.current
@@ -55,7 +50,7 @@ fun CariHutangScreen(
     ) {
         // Back button
         IconButton(
-            onClick = { navController.navigate((lyr.HutangScreen.route)) }
+            onClick = { navController.navigate((lyr.IncomeScreen.route)) }
         ) {
             Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "back_button")
         }
@@ -64,19 +59,9 @@ fun CariHutangScreen(
         OutlinedTextField(
             modifier = Modifier
                 .fillMaxWidth(),
-            value = idHutang,
-            onValueChange = { idHutang = it },
+            value = idIncome,
+            onValueChange = { idIncome = it },
             label = { Text(text = "ID Penghutang") }
-        )
-
-        // Get Data Button
-
-        // Other input fields
-        OutlinedTextField(
-            modifier = Modifier.fillMaxWidth(),
-            value = nama,
-            onValueChange = { nama = it },
-            label = { Text(text = "Nama") }
         )
 
         OutlinedTextField(
@@ -87,8 +72,8 @@ fun CariHutangScreen(
         )
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
-            value = uangHutang.toString(),
-            onValueChange = { uangHutang = it.toDoubleOrNull() ?: 0.0 },
+            value = uangmasuk.toString(),
+            onValueChange = { uangmasuk = it.toDoubleOrNull() ?: .0 },
             label = { Text(text = "Jumlah") },
             keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
         )
@@ -98,13 +83,12 @@ fun CariHutangScreen(
                 .fillMaxWidth()
                 .padding(top = 8.dp),
             onClick = {
-                hutangViewModel.retrieveData(
-                    idHutang = idHutang,
+                incomeViewModel.retrieveData(
+                    idIncome = idIncome,
                     context = context
                 ) { data ->
-                    nama = data.nama
                     date = data.date
-                    uangHutang = data.uangHutang
+                    uangmasuk = data.uangmasuk
                     note = data.note
                 }
             }

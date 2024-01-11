@@ -12,8 +12,9 @@ import com.example.aplikasie_orange.ui.HomeScreen
 import com.example.aplikasie_orange.ui.hutang.HutangScreen
 import com.example.aplikasie_orange.ui.income.IncomeScreen
 import com.example.aplikasie_orange.ui.hutang.NextHutangScreen
-import com.example.aplikasie_orange.ui.OutcomeScreen
+import com.example.aplikasie_orange.ui.outcome.OutcomeScreen
 import com.example.aplikasie_orange.ui.hutang.ShowHutangScreen
+import com.example.aplikasie_orange.ui.income.SavDelIncome
 
 
 @Composable
@@ -63,6 +64,17 @@ fun PageNavigation(
             route = lyr.ShowHutangScreen.route
         ){
             ShowHutangScreen(navController = navController, hutangViewModel = hutangViewModel)
+        }
+        composable(
+            route = lyr.ShowIncomeScreen.route
+        ){
+            ShowHutangScreen(navController = navController, hutangViewModel = hutangViewModel)
+        }
+        composable(
+            route = lyr.SavDelIncomeScreen.route
+        )
+        {
+            SavDelIncome(navController = navController, incomeViewModel = incomeViewModel)
         }
 
     }

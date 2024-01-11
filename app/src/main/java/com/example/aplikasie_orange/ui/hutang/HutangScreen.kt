@@ -27,11 +27,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.aplikasie_orange.data.HutangData
 import com.example.aplikasie_orange.model.HutangViewModel
 import com.example.aplikasie_orange.navigation.lyr
+import com.example.aplikasie_orange.ui.theme.AplikasiEOrangeTheme
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -39,23 +42,23 @@ import com.example.aplikasie_orange.navigation.lyr
 fun HutangScreen(
     navController: NavController,
     hutangViewModel: HutangViewModel,
-
-    ) {
+) {
     var idHutang: String by remember { mutableStateOf("") }
     var nama: String by remember { mutableStateOf("") }
     var date: String by remember { mutableStateOf("") }
     var uangHutang: Double by remember { mutableDoubleStateOf(0.0) }
     var note: String by remember { mutableStateOf("") }
 
-    val context = LocalContext.current //Akses konteks saat ini
+    val context = LocalContext.current
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
+        // Back Button
         IconButton(
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier.padding(8.dp),
             onClick = { navController.navigate((lyr.HomeScreen.route)) }
         ) {
             Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "back_button")
@@ -69,7 +72,8 @@ fun HutangScreen(
         )
 
         Spacer(modifier = Modifier.height(16.dp))
-        // OutlinedTextField for ID
+
+        // OutlinedTextField for Nama Penghutang
         OutlinedTextField(
             value = nama,
             onValueChange = { nama = it },
@@ -87,7 +91,7 @@ fun HutangScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // OutlinedTextField for UangKeluar
+        // OutlinedTextField for UangHutang
         OutlinedTextField(
             value = uangHutang.toString(),
             onValueChange = {
@@ -110,63 +114,69 @@ fun HutangScreen(
         Spacer(modifier = Modifier.height(32.dp))
 
         // Button to submit data
-        // save Button
-        Column(
+        Button(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
+                .fillMaxWidth()
+                .padding(bottom = 16.dp),
+            onClick = {
+                val hutangData = HutangData(
+                    idHutang = idHutang,
+                    nama = nama,
+                    date = date,
+                    uangHutang = uangHutang,
+                    note = note,
+                )
+
+                hutangViewModel.saveData(hutangData = hutangData, context = context)
+            }
         ) {
+            Text(text = "Masukan Hutang")
+        }
+
+        // Button Row
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            // Histori Hutang Button
             Button(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 16.dp),
-                onClick = {
-                    val hutangData = HutangData(
-                        idHutang = idHutang,
-                        nama = nama,
-                        date = date,
-                        uangHutang = uangHutang,
-                        note = note,
-                    )
-
-                    hutangViewModel.saveData(hutangData = hutangData, context = context)
-                }
+                    .weight(1f)
+                    .padding(end = 8.dp),
+                onClick = { navController.navigate((lyr.ShowHutangScreen.route)) }
             ) {
-                Text(text = "Masukan Hutang")
+                Text(text = "Histori Hutang")
             }
 
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 16.dp)
-            ) {
-                Button(
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(end = 8.dp),
-                    onClick = { navController.navigate((lyr.ShowHutangScreen.route)) }
-                ) {
-                    Text(text = "Histori Hutang")
-                }
-
-                Button(
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(start = 8.dp),
-                    onClick = { navController.navigate((lyr.NextHutangScreen.route)) }
-                ) {
-                    Text(text = "Edit dan Hapus Hutang")
-                }
-            }
-
+            // Edit dan Hapus Hutang Button
             Button(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 16.dp),
+                    .weight(1f)
+                    .padding(horizontal = 8.dp),
+                onClick = { navController.navigate((lyr.NextHutangScreen.route)) }
+            ) {
+                Text(text = "Edit dan Hapus ")
+            }
+
+            // Cari Hutang Button
+            Button(
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(start = 8.dp),
                 onClick = { navController.navigate((lyr.CariHutangScreen.route)) }
             ) {
                 Text(text = "Cari Hutang")
             }
         }
+    }
+}
+
+@Preview
+@Composable
+fun HutangScreenPreview() {
+    AplikasiEOrangeTheme {
+        HutangScreen(navController = rememberNavController(), hutangViewModel = HutangViewModel())
     }
 }

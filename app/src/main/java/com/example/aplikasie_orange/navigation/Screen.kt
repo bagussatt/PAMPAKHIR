@@ -14,4 +14,9 @@ sealed class lyr(val route: String) {
     object NextHutangScreen : lyr(route = "next_hutang")
     object ShowHutangScreen : lyr(route = "show_hutang")
 
+    object ShowIncomeScreen : lyr(route = "show_income")
+
+    object SavDelIncomeScreen : lyr(route = "savdel_income")
+
+
 }

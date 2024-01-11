@@ -101,7 +101,7 @@ fun HomeScreen(
             }
 
             IconButton(
-                onClick = { navController.navigate(lyr.HutangScreen.route) },
+                onClick = { navController.navigate(lyr.OutcomeScreen.route) },
                 modifier = Modifier.weight(1f)
             ) {
                 Icon(

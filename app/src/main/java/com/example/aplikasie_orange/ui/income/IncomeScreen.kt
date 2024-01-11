@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -20,29 +21,32 @@ import androidx.compose.runtime.mutableDoubleStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.example.aplikasie_orange.data.HutangData
 import com.example.aplikasie_orange.data.IncomeData
 import com.example.aplikasie_orange.model.IncomeViewModel
 import com.example.aplikasie_orange.navigation.lyr
+import com.example.aplikasie_orange.ui.theme.AplikasiEOrangeTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun IncomeScreen(
     navController: NavController,
-    incomeViewModel: IncomeViewModel,
+    incomeViewModel: IncomeViewModel
+) {
+    var idIncome by remember { mutableStateOf("") }
+    var date by remember { mutableStateOf("") }
+    var uangmasuk by remember { mutableStateOf(0.0) }
+    var note by remember { mutableStateOf("") }
 
-    ) {
-    var idIncome: String by remember { mutableStateOf("") }
-    var date: String by remember { mutableStateOf("") }
-    var uangmasuk: Double by remember { mutableDoubleStateOf(0.0) }
-    var note: String by remember { mutableStateOf("") }
-
-    val context = LocalContext.current //Akses konteks saat ini
+    val context = LocalContext.current
 
     Column(
         modifier = Modifier
@@ -87,19 +91,17 @@ fun IncomeScreen(
             label = { Text("Note") }
         )
 
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(16.dp))
 
         Row(
             modifier = Modifier
-                .padding(top = 50.dp)
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly
+                .padding(top = 5.dp)
+                .fillMaxWidth()
+                .wrapContentSize(Alignment.Center)
         ) {
             // Button to submit data
-            // save Button
             Button(
                 modifier = Modifier
-                    .padding(top = 50.dp)
                     .fillMaxWidth(),
                 onClick = {
                     val incomeData = IncomeData(
@@ -114,24 +116,39 @@ fun IncomeScreen(
             ) {
                 Text(text = "Masukan Data")
             }
+        }
 
-            Spacer(modifier = Modifier.width(16.dp))
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
 
-            Button(onClick = { navController.navigate(lyr.ShowHutangScreen.route) }) {
-                Text(text = "Histori Hutang")
-            }
+                Button(onClick = { navController.navigate(lyr.ShowIncomeScreen.route) }) {
+                    Text(text = "Histori Income")
+                }
 
-            Spacer(modifier = Modifier.width(16.dp))
+                Button(onClick = { navController.navigate(lyr.SavDelIncomeScreen.route) }) {
+                    Text(text = "Edit dan Hapus ")
+                }
 
-            Button(onClick = { navController.navigate(lyr.NextHutangScreen.route) }) {
-                Text(text = "Edit dan Hapus Hutang")
-            }
-
-            Spacer(modifier = Modifier.width(16.dp))
-
-            Button(onClick = { navController.navigate(lyr.CariHutangScreen.route) }) {
-                Text(text = "Cari Hutang")
+                Button(onClick = { navController.navigate(lyr.CariIncomeScreen.route) }) {
+                    Text(text = "Cari ")
             }
         }
+    }
+}
+
+
+
+@Preview
+@Composable
+fun incomeprev() {
+    AplikasiEOrangeTheme {
+        IncomeScreen(
+            navController = NavHostController(LocalContext.current),
+            incomeViewModel = IncomeViewModel()
+        )
     }
 }

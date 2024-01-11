@@ -1,4 +1,4 @@
-package com.example.aplikasie_orange.ui
+package com.example.aplikasie_orange.ui.outcome
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
