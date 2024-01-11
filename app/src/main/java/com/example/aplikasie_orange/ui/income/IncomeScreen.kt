@@ -11,8 +11,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -53,6 +57,13 @@ fun IncomeScreen(
             .fillMaxSize()
             .padding(16.dp)
     ) {
+        IconButton(
+            modifier = Modifier.padding(16.dp),
+            onClick = { navController.navigate((lyr.HomeScreen.route)) }
+        ) {
+            Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "back_button")
+        }
+
         // OutlinedTextField for ID Income
         OutlinedTextField(
             value = idIncome,
@@ -126,7 +137,7 @@ fun IncomeScreen(
             ) {
 
                 Button(onClick = { navController.navigate(lyr.ShowIncomeScreen.route) }) {
-                    Text(text = "Histori Income")
+                    Text(text = "Histori")
                 }
 
                 Button(onClick = { navController.navigate(lyr.SavDelIncomeScreen.route) }) {

@@ -1,14 +1,20 @@
 package com.example.aplikasie_orange.ui.outcome
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.aplikasie_orange.data.OutcomeData
 import com.example.aplikasie_orange.model.OutcomeViewModel
+import com.example.aplikasie_orange.navigation.lyr
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -44,11 +51,18 @@ fun OutcomeScreen(
                 .fillMaxSize()
                 .padding(16.dp)
         ) {
+            IconButton(
+                modifier = Modifier.padding(16.dp),
+                onClick = { navController.navigate((lyr.HomeScreen.route)) }
+            ) {
+                Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "back_button")
+            }
+
             // OutlinedTextField for ID
             OutlinedTextField(
                 value = idOutme,
                 onValueChange = { idOutme = it },
-                label = { Text("ID Outcome") }
+                label = { Text("ID") }
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -68,7 +82,7 @@ fun OutcomeScreen(
                 onValueChange = {
                     uangkeluar = it.toDoubleOrNull() ?: 0.0
                 },
-                label = { Text("Uang Keluar") },
+                label = { Text("Outcome") },
                 keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
                 singleLine = true
             )
@@ -102,6 +116,25 @@ fun OutcomeScreen(
                 }
             ) {
                 Text(text = "Masukan Data")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+
+                Button(onClick = { navController.navigate(lyr.ShowOutcomeScreen.route) }) {
+                    Text(text = "Histori")
+                }
+
+                Button(onClick = { navController.navigate(lyr.SavDelOutcome.route) }) {
+                    Text(text = "Edit dan Hapus ")
+                }
+
+                Button(onClick = { navController.navigate(lyr.CariOutcomeScreen.route) }) {
+                    Text(text = "Cari")
+                }
             }
         }
     }

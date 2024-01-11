@@ -140,6 +140,7 @@ fun HutangScreen(
                 .padding(vertical = 8.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
+
             // Histori Hutang Button
             Button(
                 modifier = Modifier
@@ -147,7 +148,7 @@ fun HutangScreen(
                     .padding(end = 8.dp),
                 onClick = { navController.navigate((lyr.ShowHutangScreen.route)) }
             ) {
-                Text(text = "Histori Hutang")
+                Text(text = "Histori")
             }
 
             // Edit dan Hapus Hutang Button
@@ -157,7 +158,7 @@ fun HutangScreen(
                     .padding(horizontal = 8.dp),
                 onClick = { navController.navigate((lyr.NextHutangScreen.route)) }
             ) {
-                Text(text = "Edit dan Hapus ")
+                Text(text = "Edit dan Hapus")
             }
 
             // Cari Hutang Button
@@ -167,7 +168,7 @@ fun HutangScreen(
                     .padding(start = 8.dp),
                 onClick = { navController.navigate((lyr.CariHutangScreen.route)) }
             ) {
-                Text(text = "Cari Hutang")
+                Text(text = "Cari")
             }
         }
     }

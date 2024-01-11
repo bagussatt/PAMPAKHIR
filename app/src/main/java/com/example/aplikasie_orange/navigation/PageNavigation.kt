@@ -14,7 +14,12 @@ import com.example.aplikasie_orange.ui.income.IncomeScreen
 import com.example.aplikasie_orange.ui.hutang.NextHutangScreen
 import com.example.aplikasie_orange.ui.outcome.OutcomeScreen
 import com.example.aplikasie_orange.ui.hutang.ShowHutangScreen
+import com.example.aplikasie_orange.ui.income.CariIncomeScreen
 import com.example.aplikasie_orange.ui.income.SavDelIncome
+import com.example.aplikasie_orange.ui.income.ShowIncomeScreen
+import com.example.aplikasie_orange.ui.outcome.CariOutcomeScreen
+import com.example.aplikasie_orange.ui.outcome.SavDelOutcome
+import com.example.aplikasie_orange.ui.outcome.ShowOutcomeScreen
 
 
 @Composable
@@ -68,13 +73,33 @@ fun PageNavigation(
         composable(
             route = lyr.ShowIncomeScreen.route
         ){
-            ShowHutangScreen(navController = navController, hutangViewModel = hutangViewModel)
+            ShowIncomeScreen(navController = navController, incomeViewModel = incomeViewModel)
         }
         composable(
             route = lyr.SavDelIncomeScreen.route
         )
         {
             SavDelIncome(navController = navController, incomeViewModel = incomeViewModel)
+        }
+        composable(
+            route = lyr.CariOutcomeScreen.route
+        ){
+            CariOutcomeScreen(navController = navController, outcomeViewModel = outcomeViewModel)
+        }
+        composable(
+            route = lyr.SavDelOutcome.route
+        ){
+            SavDelOutcome(navController = navController, outcomeViewModel = outcomeViewModel)
+        }
+        composable(
+            route = lyr.ShowOutcomeScreen.route
+        ){
+            ShowOutcomeScreen(navController = navController, outcomeViewModel = outcomeViewModel)
+        }
+        composable(
+            route = lyr.CariIncomeScreen.route
+        ){
+            CariIncomeScreen(navController = navController, incomeViewModel = incomeViewModel)
         }
 
     }
