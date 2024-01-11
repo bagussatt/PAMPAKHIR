@@ -3,46 +3,53 @@ package com.example.aplikasie_orange
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
+import androidx.activity.viewModels
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.example.aplikasie_orange.model.HutangViewModel
 import com.example.aplikasie_orange.model.IncomeViewModel
+import com.example.aplikasie_orange.model.OutcomeViewModel
+import com.example.aplikasie_orange.navigation.PageNavigation
+import com.example.aplikasie_orange.ui.HomeScreen
+import com.example.aplikasie_orange.ui.HutangScreen
 import com.example.aplikasie_orange.ui.IncomeScreen
+import com.example.aplikasie_orange.ui.NextHutangScreen
 import com.example.aplikasie_orange.ui.theme.AplikasiEOrangeTheme
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
 
 class MainActivity : ComponentActivity() {
+
+    private val hutangViewModel: HutangViewModel by viewModels()
+    private val incomeViewModel: IncomeViewModel by viewModels()
+    private val outcomeViewModel: OutcomeViewModel by viewModels()
+    private lateinit var navController: NavHostController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Initialize Firestore
+        Firebase.firestore
+
+        // Initialize the NavController
+
+
         setContent {
             AplikasiEOrangeTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    IncomeScreen(incomeViewModel = IncomeViewModel())
+                Surface() {
+                    navController = rememberNavController()
+
+                    PageNavigation(
+
+                        navController = navController,
+                        hutangViewModel = hutangViewModel,
+                        incomeViewModel = incomeViewModel,
+                        outcomeViewModel = outcomeViewModel,
+                    )
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    AplikasiEOrangeTheme {
-        Greeting("Android")
     }
 }

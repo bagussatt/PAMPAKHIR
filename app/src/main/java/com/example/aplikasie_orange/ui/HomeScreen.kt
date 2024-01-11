@@ -4,13 +4,11 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.Button
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -34,6 +32,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.aplikasie_orange.R
+import com.example.aplikasie_orange.navigation.lyr
 import com.example.aplikasie_orange.ui.theme.AplikasiEOrangeTheme
 
 @Composable
@@ -91,7 +90,7 @@ fun HomeScreen(
                 .padding(dimensionResource(R.dimen.padding_medium))
         ) {
             IconButton(
-                onClick = { /* Handle Income click */ },
+                onClick = { navController.navigate((lyr.IncomeScreen.route)) },
                 modifier = Modifier.weight(1f)
             ) {
                 Icon(
@@ -102,7 +101,7 @@ fun HomeScreen(
             }
 
             IconButton(
-                onClick = { /* Handle Outcome click */ },
+                onClick = { navController.navigate(lyr.HutangScreen.route) },
                 modifier = Modifier.weight(1f)
             ) {
                 Icon(
@@ -113,7 +112,7 @@ fun HomeScreen(
             }
 
             IconButton(
-                onClick = { /* Handle Hutang click */ },
+                onClick = { navController.navigate(lyr.HutangScreen.route) },
                 modifier = Modifier.weight(1f)
             ) {
                 Icon(

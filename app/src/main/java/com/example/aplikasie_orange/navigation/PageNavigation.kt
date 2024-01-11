@@ -4,10 +4,10 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import com.example.aplikasie_orange.model.HutangViewModel
 import com.example.aplikasie_orange.model.IncomeViewModel
 import com.example.aplikasie_orange.model.OutcomeViewModel
+import com.example.aplikasie_orange.ui.HomeScreen
 import com.example.aplikasie_orange.ui.HutangScreen
 import com.example.aplikasie_orange.ui.IncomeScreen
 import com.example.aplikasie_orange.ui.OutcomeScreen
@@ -26,6 +26,12 @@ fun PageNavigation(
         startDestination = lyr.HomeScreen.route
     ) {
         composable(
+            route = lyr.HomeScreen.route
+        ) {
+            HomeScreen(navController = navController)
+        }
+
+        composable(
             route = lyr.IncomeScreen.route
         ) {
             IncomeScreen(navController = navController, incomeViewModel = incomeViewModel)
@@ -34,7 +40,7 @@ fun PageNavigation(
         composable(
             route = lyr.HutangScreen.route
         ) {
-            HutangScreen( hutangViewModel = hutangViewModel)
+            HutangScreen( navController= navController, hutangViewModel = hutangViewModel)
         }
             composable(
                 route = lyr.OutcomeScreen.route
@@ -43,23 +49,4 @@ fun PageNavigation(
             }
 
     }
-
-}
-@Composable
-fun EOrange() {
-    // Assuming you have the necessary ViewModel instances
-    val hutangViewModel = HutangViewModel()
-    val incomeViewModel = IncomeViewModel()
-    val outcomeViewModel = OutcomeViewModel()
-
-    // Creating the NavHostController
-    val navController = rememberNavController()
-
-    // Invoke PageNavigation in your main function
-    PageNavigation(
-        navController = navController,
-        hutangViewModel = hutangViewModel,
-        incomeViewModel = incomeViewModel,
-        outcomeViewModel = outcomeViewModel
-    )
 }
