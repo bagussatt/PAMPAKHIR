@@ -65,7 +65,7 @@ fun ShowOutcomeScreen(
                     isTableVisible = !isTableVisible
                 }
             ) {
-                Text(text = if (isTableVisible) "Hide Table" else "Show Histori Tabel")
+                Text(text = if (isTableVisible) "Hide Table" else "Show Histori Outcome")
             }
 
             // Show the table when the button is clicked

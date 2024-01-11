@@ -6,9 +6,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.aplikasie_orange.model.HutangViewModel
 import com.example.aplikasie_orange.model.IncomeViewModel
+import com.example.aplikasie_orange.model.LogSUViewModel
 import com.example.aplikasie_orange.model.OutcomeViewModel
 import com.example.aplikasie_orange.ui.hutang.CariHutangScreen
 import com.example.aplikasie_orange.ui.HomeScreen
+import com.example.aplikasie_orange.ui.LogSUScreen
 import com.example.aplikasie_orange.ui.hutang.HutangScreen
 import com.example.aplikasie_orange.ui.income.IncomeScreen
 import com.example.aplikasie_orange.ui.hutang.NextHutangScreen
@@ -31,7 +33,7 @@ fun PageNavigation(
 ){
     NavHost(
         navController = navController,
-        startDestination = lyr.HomeScreen.route
+        startDestination = lyr.LogSUScreen.route
     ) {
         composable(
             route = lyr.HomeScreen.route
@@ -101,6 +103,10 @@ fun PageNavigation(
         ){
             CariIncomeScreen(navController = navController, incomeViewModel = incomeViewModel)
         }
-
+        composable(
+            route = lyr.LogSUScreen.route
+        ) {
+            LogSUScreen(navController = navController, logSUViewModel = LogSUViewModel())
+        }
     }
 }

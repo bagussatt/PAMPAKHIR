@@ -83,14 +83,24 @@ fun CariHutangScreen(
             modifier = Modifier.fillMaxWidth(),
             value = date,
             onValueChange = { date = it },
-            label = { Text(text = "Waktu") }
+            label = { Text(text = "DD/MM/YYYY") }
         )
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
             value = uangHutang.toString(),
-            onValueChange = { uangHutang = it.toDoubleOrNull() ?: 0.0 },
+            onValueChange = { uangHutang = it.toDoubleOrNull() ?: .0 },
             label = { Text(text = "Jumlah") },
             keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
+        )
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = note,
+            onValueChange = {
+                note = it
+            },
+            label = {
+                Text(text = "Note")
+            }
         )
         Button(
             modifier = Modifier

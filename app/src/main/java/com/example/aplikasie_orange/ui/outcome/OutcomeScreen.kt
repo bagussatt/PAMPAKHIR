@@ -71,7 +71,7 @@ fun OutcomeScreen(
             OutlinedTextField(
                 value = date,
                 onValueChange = { date = it },
-                label = { Text("Waktu") }
+                label = { Text("DD/MM/YYYY") }
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -80,7 +80,7 @@ fun OutcomeScreen(
             OutlinedTextField(
                 value = uangkeluar.toString(),
                 onValueChange = {
-                    uangkeluar = it.toDoubleOrNull() ?: 0.0
+                    uangkeluar = it.toDoubleOrNull() ?: .0
                 },
                 label = { Text("Outcome") },
                 keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),

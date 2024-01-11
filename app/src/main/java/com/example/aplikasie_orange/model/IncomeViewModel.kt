@@ -79,6 +79,7 @@ class IncomeViewModel (): ViewModel(){
                     if (it.exists()){
                         val incomeData = it.toObject<IncomeData>()!!
                         data(incomeData)
+                        Toast.makeText(context, "Succsesfully retrieved data", Toast.LENGTH_LONG).show()
                     } else {
                         Toast.makeText(context, "No User Data Found", Toast.LENGTH_SHORT).show()
                     }

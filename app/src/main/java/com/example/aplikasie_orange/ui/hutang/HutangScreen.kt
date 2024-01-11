@@ -86,7 +86,7 @@ fun HutangScreen(
         OutlinedTextField(
             value = date,
             onValueChange = { date = it },
-            label = { Text("Waktu") }
+            label = { Text("DD/MM/YYYY") }
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -95,7 +95,7 @@ fun HutangScreen(
         OutlinedTextField(
             value = uangHutang.toString(),
             onValueChange = {
-                uangHutang = it.toDoubleOrNull() ?: 0.0
+                uangHutang = it.toDoubleOrNull() ?: .0
             },
             label = { Text("Uang Hutang") },
             keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),

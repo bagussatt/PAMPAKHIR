@@ -79,7 +79,7 @@ fun NextHutangScreen(
                     date = it
                 },
                 label = {
-                    Text(text = "Waktu")
+                    Text(text = "DD/MM/YYYY")
                 }
             )
 
@@ -87,12 +87,22 @@ fun NextHutangScreen(
                 modifier = Modifier.fillMaxWidth(),
                 value = uangHutang.toString(),
                 onValueChange = {
-                    uangHutang = it.toDoubleOrNull() ?: 0.0
+                    uangHutang = it.toDoubleOrNull() ?: .0
                 },
                 label = {
                     Text(text = "Jumlah")
                 }
             )
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = note,
+            onValueChange = {
+                note = it
+            },
+            label = {
+                Text(text = "Note")
+            }
+        )
 
             Button(
                 modifier = Modifier

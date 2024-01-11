@@ -21,5 +21,7 @@ sealed class lyr(val route: String) {
     object ShowOutcomeScreen : lyr(route = "show_outcome")
     object SavDelOutcome : lyr(route = "savdel_outcome")
 
+    object LogSUScreen : lyr(route = "log")
+
 
 }

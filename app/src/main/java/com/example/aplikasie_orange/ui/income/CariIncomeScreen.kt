@@ -36,7 +36,7 @@ fun CariIncomeScreen(
 ) {
     var idIncome by remember { mutableStateOf("") }
     var date by remember { mutableStateOf("") }
-    var uangmasuk by remember { mutableStateOf(0.0) }
+    var uangmasuk by remember { mutableStateOf(.0) }
     var note by remember { mutableStateOf("") }
 
     val context = LocalContext.current
@@ -68,7 +68,7 @@ fun CariIncomeScreen(
             modifier = Modifier.fillMaxWidth(),
             value = date,
             onValueChange = { date = it },
-            label = { Text(text = "Waktu") }
+            label = { Text(text = "DD/MM/YYYY") }
         )
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
@@ -76,6 +76,16 @@ fun CariIncomeScreen(
             onValueChange = { uangmasuk = it.toDoubleOrNull() ?: .0 },
             label = { Text(text = "Jumlah") },
             keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
+        )
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = note,
+            onValueChange = {
+                note = it
+            },
+            label = {
+                Text(text = "Note")
+            }
         )
         Button(
             modifier = Modifier

@@ -69,7 +69,7 @@ fun SavDelIncome(
                 date = it
             },
             label = {
-                Text(text = "Waktu")
+                Text(text = "DD/MM/YYYY")
             }
         )
 
@@ -77,10 +77,20 @@ fun SavDelIncome(
             modifier = Modifier.fillMaxWidth(),
             value = uangmasuk.toString(),
             onValueChange = {
-                uangmasuk = it.toDoubleOrNull() ?: 0.0
+                uangmasuk = it.toDoubleOrNull() ?: .0
             },
             label = {
                 Text(text = "Jumlah")
+            }
+        )
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = note,
+            onValueChange = {
+                note = it
+            },
+            label = {
+                Text(text = "Note")
             }
         )
 

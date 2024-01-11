@@ -86,7 +86,7 @@ fun IncomeScreen(
         OutlinedTextField(
             value = uangmasuk.toString(),
             onValueChange = {
-                uangmasuk = it.toDoubleOrNull() ?: 0.0
+                uangmasuk = it.toDoubleOrNull() ?: .0
             },
             label = { Text("Uang Masuk") },
             keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),

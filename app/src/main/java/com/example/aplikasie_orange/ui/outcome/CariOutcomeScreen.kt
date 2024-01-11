@@ -49,7 +49,7 @@ fun CariOutcomeScreen(
     ) {
         // Back button
         IconButton(
-            onClick = { navController.navigate((lyr.IncomeScreen.route)) }
+            onClick = { navController.navigate((lyr.OutcomeScreen.route)) }
         ) {
             Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "back_button")
         }
@@ -75,6 +75,16 @@ fun CariOutcomeScreen(
             onValueChange = { uangkeluar = it.toDoubleOrNull() ?: .0 },
             label = { Text(text = "Jumlah") },
             keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
+        )
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = note,
+            onValueChange = {
+                note = it
+            },
+            label = {
+                Text(text = "Note")
+            }
         )
         Button(
             modifier = Modifier

@@ -70,7 +70,7 @@ fun SavDelOutcome(
                 date = it
             },
             label = {
-                Text(text = "Waktu")
+                Text(text = "DD/MM/YYYY")
             }
         )
 
@@ -78,10 +78,20 @@ fun SavDelOutcome(
             modifier = Modifier.fillMaxWidth(),
             value = uangkeluar.toString(),
             onValueChange = {
-                uangkeluar = it.toDoubleOrNull() ?: 0.0
+                uangkeluar = it.toDoubleOrNull() ?: .0
             },
             label = {
                 Text(text = "Jumlah")
+            }
+        )
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = note,
+            onValueChange = {
+                note = it
+            },
+            label = {
+                Text(text = "Note")
             }
         )
 
