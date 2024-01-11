@@ -11,10 +11,6 @@ import com.example.aplikasie_orange.model.HutangViewModel
 import com.example.aplikasie_orange.model.IncomeViewModel
 import com.example.aplikasie_orange.model.OutcomeViewModel
 import com.example.aplikasie_orange.navigation.PageNavigation
-import com.example.aplikasie_orange.ui.HomeScreen
-import com.example.aplikasie_orange.ui.HutangScreen
-import com.example.aplikasie_orange.ui.IncomeScreen
-import com.example.aplikasie_orange.ui.NextHutangScreen
 import com.example.aplikasie_orange.ui.theme.AplikasiEOrangeTheme
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore

@@ -1,4 +1,4 @@
-package com.example.aplikasie_orange.ui
+package com.example.aplikasie_orange.ui.hutang
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.aplikasie_orange.data.HutangData
 import com.example.aplikasie_orange.model.HutangViewModel
+import com.example.aplikasie_orange.navigation.lyr
 
 @Composable
 fun ShowHutangScreen(
@@ -48,19 +49,11 @@ fun ShowHutangScreen(
                 .fillMaxSize()
                 .padding(16.dp)
         ) {
-            // Back button
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
-                verticalAlignment = Alignment.CenterVertically
+            IconButton(
+                modifier = Modifier.padding(16.dp),
+                onClick = {navController.navigate((lyr.HutangScreen.route))}
             ) {
-                IconButton(
-                    onClick = {
-                    }
-                ) {
-                    Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "Back")
-                }
+                Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "back_button")
             }
 
             // Button to show/hide the table

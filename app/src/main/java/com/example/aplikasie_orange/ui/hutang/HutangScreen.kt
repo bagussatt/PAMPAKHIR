@@ -1,14 +1,21 @@
-package com.example.aplikasie_orange.ui
+package com.example.aplikasie_orange.ui.hutang
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,9 +30,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.aplikasie_orange.data.HutangData
-import com.example.aplikasie_orange.data.OutcomeData
 import com.example.aplikasie_orange.model.HutangViewModel
-import com.example.aplikasie_orange.model.OutcomeViewModel
+import com.example.aplikasie_orange.navigation.lyr
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -48,6 +54,13 @@ fun HutangScreen(
             .fillMaxSize()
             .padding(16.dp)
     ) {
+        IconButton(
+            modifier = Modifier.padding(16.dp),
+            onClick = { navController.navigate((lyr.HomeScreen.route)) }
+        ) {
+            Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "back_button")
+        }
+
         // OutlinedTextField for ID
         OutlinedTextField(
             value = idHutang,
@@ -98,23 +111,62 @@ fun HutangScreen(
 
         // Button to submit data
         // save Button
-        Button(
+        Column(
             modifier = Modifier
-                .padding(top = 50.dp)
-                .fillMaxWidth(),
-            onClick = {
-                val hutangData = HutangData(
-                    idHutang = idHutang,
-                    nama = nama,
-                    date = date,
-                    uangHutang = uangHutang,
-                    note = note,
-                )
-
-                hutangViewModel.saveData(hutangData = hutangData, context = context)
-            }
+                .fillMaxSize()
+                .padding(16.dp)
         ) {
-            Text(text = "Masukan Hutang")
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 16.dp),
+                onClick = {
+                    val hutangData = HutangData(
+                        idHutang = idHutang,
+                        nama = nama,
+                        date = date,
+                        uangHutang = uangHutang,
+                        note = note,
+                    )
+
+                    hutangViewModel.saveData(hutangData = hutangData, context = context)
+                }
+            ) {
+                Text(text = "Masukan Hutang")
+            }
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 16.dp)
+            ) {
+                Button(
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(end = 8.dp),
+                    onClick = { navController.navigate((lyr.ShowHutangScreen.route)) }
+                ) {
+                    Text(text = "Histori Hutang")
+                }
+
+                Button(
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(start = 8.dp),
+                    onClick = { navController.navigate((lyr.NextHutangScreen.route)) }
+                ) {
+                    Text(text = "Edit dan Hapus Hutang")
+                }
+            }
+
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 16.dp),
+                onClick = { navController.navigate((lyr.CariHutangScreen.route)) }
+            ) {
+                Text(text = "Cari Hutang")
+            }
         }
     }
 }

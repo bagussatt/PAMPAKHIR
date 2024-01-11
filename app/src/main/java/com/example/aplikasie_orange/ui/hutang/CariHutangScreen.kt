@@ -1,12 +1,15 @@
-package com.example.aplikasie_orange.ui
+package com.example.aplikasie_orange.ui.hutang
 
-import android.content.Context
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -38,10 +41,17 @@ fun CariHutangScreen(
     val context = LocalContext.current
 
     // User ID
-    Row(
+    Column(
         modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        IconButton(
+            modifier = Modifier.padding(16.dp),
+            onClick = {navController.navigate((lyr.HutangScreen.route))}
+        ) {
+            Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "back_button")
+        }
+
         OutlinedTextField(
             modifier = Modifier
                 .fillMaxWidth(0.6f)
