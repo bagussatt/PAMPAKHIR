@@ -1,9 +1,10 @@
-package com.example.aplikasie_orange.data
+package com.example.aplikasie_orange.model
 
 import android.content.Context
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
+import com.example.aplikasie_orange.data.OutcomeData
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.toObject

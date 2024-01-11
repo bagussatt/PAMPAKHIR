@@ -10,7 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.aplikasie_orange.data.IncomeViewModel
+import com.example.aplikasie_orange.model.IncomeViewModel
 import com.example.aplikasie_orange.ui.IncomeScreen
 import com.example.aplikasie_orange.ui.theme.AplikasiEOrangeTheme
 

@@ -21,20 +21,19 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.example.aplikasie_orange.data.IncomeData
-import com.example.aplikasie_orange.data.IncomeViewModel
+import com.example.aplikasie_orange.model.IncomeViewModel
 
 @Composable
 fun IncomeScreen(
     incomeViewModel: IncomeViewModel,
 
-) {
+    ) {
     var idIncome: String by remember { mutableStateOf("") }
     var date: String by remember { mutableStateOf("") }
     var uangmasuk: Double by remember { mutableDoubleStateOf(0.0) }
     var note: String by remember { mutableStateOf("") }
 
-    val context = LocalContext.current
-
+    val context = LocalContext.current //Akses konteks saat ini
 
     Column(
         modifier = Modifier
